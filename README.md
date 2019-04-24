@@ -1,4 +1,3 @@
-# MvpPractice
 ## 为什么要用 MVP？
 ### 代码简洁
 此处的简洁是逻辑的简洁，而不是代码本身。
@@ -9,7 +8,7 @@ MVP的使用，使Activity中的网络请求剥离出来成为model、presenter�
 presenter 负责处理请求网络后的数据处理：加载中 成功 or 失败 取消加载；
 最后 View 进行界面的 UI 展示；
 
-### mvp 缺点？
+## mvp 缺点？
 MVP在实现代码简洁的同时，额外增加了大量的接口、类，不方便进行管理。
 
 项目中使用到了Contract，Contract 是一个契约，将 Model、View、Presenter 进行约束管理，方便后期类的查找、维护。
