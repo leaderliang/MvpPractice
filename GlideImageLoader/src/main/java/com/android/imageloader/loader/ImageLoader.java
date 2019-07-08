@@ -83,7 +83,7 @@ public class ImageLoader {
      * @param view
      */
     public static void clearMomoryCache(View view) {
-        getActualLoader().clearMomoryCache(view);
+        getActualLoader().clearMemoryCache(view);
     }
 
 
@@ -102,7 +102,7 @@ public class ImageLoader {
      * Clears as much memory as possible.
      */
     public static void clearMomory() {
-        getActualLoader().clearMomory();
+        getActualLoader().clearMemory();
     }
 
     /**

@@ -24,9 +24,9 @@ public interface ILoader {
 
     void clearDiskCache();
 
-    void clearMomoryCache(View view);
+    void clearMemoryCache(View view);
 
-    void clearMomory();
+    void clearMemory();
 
     boolean isCached(String url);
 

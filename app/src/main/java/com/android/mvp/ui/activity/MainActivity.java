@@ -1,6 +1,5 @@
 package com.android.mvp.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -9,19 +8,20 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.android.imageloader.config.ScaleMode;
 import com.android.imageloader.loader.ImageLoader;
+import com.android.imageloader.transformation.GlideRoundTransform;
 import com.android.mvp.R;
 import com.android.mvp.bean.Repo;
 import com.android.mvp.constant.AppConstant;
 import com.android.mvp.contract.UserReposContract;
 import com.android.mvp.mvp.activity.BaseActivity;
 import com.android.mvp.presenter.UserReposPresenter;
-import com.android.mvp.utils.CollectionUtils;
 import com.android.mvp.utils.JsonFormat;
 import com.android.mvp.utils.Trace;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -97,6 +97,7 @@ public class MainActivity extends BaseActivity<UserReposContract.View, UserRepos
 //        Log.e(TAG,"----->"+new Gson().toJson(bean));
     }
 
+
     private void setHorizontalViewData() {
         mHorizontalLayout.removeAllViews();
         /*将需要滑动的布局动态添加到 HorizontalScrollView 包裹的布局中来实现滑动效果*/
@@ -106,16 +107,26 @@ public class MainActivity extends BaseActivity<UserReposContract.View, UserRepos
 
             ImageLoader.with(this)
                     .url(AppConstant.getImageUrl().get(i))
-                    .scale(ScaleMode.FIT_CENTER)
-                    .rectRoundCorner(2)
-                    .into(ivHorizontalScrollview);
+                    .placeHolder(R.mipmap.login_bg)
+                    .rectRoundCorner(50)
 
-           /* RequestOptions myOptions = new RequestOptions().transform(new GlideRoundTransform(30));
-            Glide.with(this).load(AppConstant.getImageUrl().get(i)).placeholder(R.mipmap.login_bg).apply(myOptions).into(ivHorizontalScrollview);*/
+                    .into(ivHorizontalScrollview);
+//             .scale(ScaleMode.FIT_CENTER)
+
+
+            /*RequestOptions myOptions = new RequestOptions()
+                    .transform(new GlideRoundTransform(50));
+
+            Glide.with(this).load(AppConstant.getImageUrl().get(i))
+                    .placeholder(R.mipmap.login_bg)
+                    .apply(myOptions)
+                    .into(ivHorizontalScrollview);*/
 
             mHorizontalLayout.addView(mHorizontalItem);
         }
     }
+
+
 
 
 }

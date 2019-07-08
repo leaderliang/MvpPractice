@@ -139,6 +139,9 @@ public class GlideLoader implements ILoader {
             case ScaleMode.FIT_CENTER:
                 options.fitCenter();
                 break;
+            case ScaleMode.CENTER_INSIDE:
+                options.centerInside();
+                break;
             default:
                 options.fitCenter();
                 break;
@@ -430,12 +433,12 @@ public class GlideLoader implements ILoader {
     }
 
     @Override
-    public void clearMomoryCache(View view) {
+    public void clearMemoryCache(View view) {
         Glide.with(view).clear(view);
     }
 
     @Override
-    public void clearMomory() {
+    public void clearMemory() {
         Glide.get(GlobalConfig.context).clearMemory();
     }
 
