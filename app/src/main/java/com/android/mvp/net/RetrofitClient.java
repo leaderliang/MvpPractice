@@ -36,8 +36,6 @@ public class RetrofitClient {
     private Retrofit retrofit;
 
     private RetrofitClient() {
-
-
     }
 
     public static RetrofitClient getInstance() {
@@ -77,11 +75,9 @@ public class RetrofitClient {
      * @return
      */
     private Interceptor getInterceptor() {
-
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         //显示日志
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
         return interceptor;
     }
 
