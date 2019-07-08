@@ -1,6 +1,9 @@
 package com.android.mvp.ui.activity;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.View;
 
 import com.android.mvp.R;
 import com.android.mvp.bean.Repo;
@@ -36,14 +39,25 @@ public class MainActivity extends BaseActivity<UserReposContract.View, UserRepos
     }
 
     @Override
-    public void initView() {
+    protected boolean isUseToolBar() {
+        return false;
+    }
+
+    @Override
+    protected void setViewListener() {
+
+    }
+
+    @Override
+    protected void initView(@Nullable Bundle savedInstanceState) {
         getMvpPresenter().getUserRepo();
     }
 
     @Override
-    protected void setListener() {
+    protected void onViewClick(View v) {
 
     }
+
 
     @Override
     protected int getLayoutId() {
@@ -51,9 +65,10 @@ public class MainActivity extends BaseActivity<UserReposContract.View, UserRepos
     }
 
     @Override
-    public void onError(Throwable throwable) {
-
+    protected SwipeRefreshLayout getSwipeRefreshLayout() {
+        return null;
     }
+
 
     @Override
     public void onSuccess(List<Repo> bean) {

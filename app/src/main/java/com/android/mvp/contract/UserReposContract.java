@@ -1,6 +1,8 @@
 package com.android.mvp.contract;
 
 
+import android.media.MediaSync;
+
 import com.android.mvp.bean.Repo;
 import com.android.mvp.mvp.mvp.MvpPresenter;
 import com.android.mvp.mvp.mvp.MvpView;
@@ -25,10 +27,10 @@ public interface UserReposContract {
         void showLoading();
 
         @Override
-        void hideLoading();
+        void dismissLoading();
 
         @Override
-        void onError(Throwable throwable);
+        void onError(String error);
 
         void onSuccess(List<Repo> bean);
     }

@@ -23,10 +23,10 @@ public interface MainContract {
         void showLoading();
 
         @Override
-        void hideLoading();
+        void dismissLoading();
 
         @Override
-        void onError(Throwable throwable);
+        void onError(String error);
 
         void onSuccess(BaseObjectBean<LoginBean> bean);
     }
