@@ -37,17 +37,18 @@ public class UserReposPresenter extends BaseMvpPresenter<UserReposContract.View>
         model.getUserRepo()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
+                .as(mMvpView.bindAutoDispose())
                 .subscribe(new Consumer<List<Repo>>() {
                     @Override
                     public void accept(List<Repo> repos) throws Exception {
                         mMvpView.onSuccess(repos);
-                        mMvpView.hideLoading();
+                        mMvpView.dismissLoading();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        mMvpView.onError(throwable);
-                        mMvpView.hideLoading();
+                        mMvpView.onThrowable(throwable);
+                        mMvpView.dismissLoading();
                     }
                 });
 

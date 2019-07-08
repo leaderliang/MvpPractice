@@ -1,9 +1,14 @@
 package com.android.mvp.application;
 
+import android.app.Application;
 import android.content.Context;
 
+import com.android.imageloader.loader.ImageLoader;
 import com.android.mvp.BuildConfig;
 import com.android.mvp.utils.Trace;
+import com.android.mvp.view.toast.ToastUtils;
+import com.android.mvp.view.toast.style.ToastAliPayStyle;
+
 
 /**
  * TODO
@@ -17,16 +22,21 @@ public class ApplicationInit {
     private static final String TAG = "ApplicationInit";
     private Context mContext;
 
-    public void initApp(Context context) {
+
+    public void initApp(Application context) {
         if (context == null) {
             return;
         }
-
         mContext = context;
+
+
         debug(BuildConfig.DEBUG);
 
-        /*初始化一些服务*/
+        /*初始化吐司工具类*/
+        ToastUtils.init(context, new ToastAliPayStyle());
 
+        /*初始化一些服务*/
+        ImageLoader.init(context.getApplicationContext());
 
 
     }
@@ -35,4 +45,6 @@ public class ApplicationInit {
     private void debug(boolean debug) {
         Trace.setLevel(debug ? Trace.LEVEL_VERBOSE : Trace.LEVEL_SILENCE);
     }
+
+
 }

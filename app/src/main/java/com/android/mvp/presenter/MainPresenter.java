@@ -38,13 +38,13 @@ public class MainPresenter extends BaseMvpPresenter<MainContract.View> implement
                     @Override
                     public void accept(BaseObjectBean<LoginBean> bean) throws Exception {
                         mMvpView.onSuccess(bean);
-                        mMvpView.hideLoading();
+                        mMvpView.dismissLoading();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        mMvpView.onError(throwable);
-                        mMvpView.hideLoading();
+                        mMvpView.onThrowable(throwable);
+                        mMvpView.dismissLoading();
                     }
                 });
     }
