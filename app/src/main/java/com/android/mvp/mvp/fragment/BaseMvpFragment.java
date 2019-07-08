@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import com.android.mvp.mvp.mvp.MvpCallback;
 import com.android.mvp.mvp.mvp.MvpPresenter;
 import com.android.mvp.mvp.mvp.MvpView;
-import com.android.mvp.utils.ToastUtil;
 import com.android.mvp.utils.Trace;
 
 import butterknife.ButterKnife;

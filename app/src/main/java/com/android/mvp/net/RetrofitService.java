@@ -22,7 +22,7 @@ import retrofit2.http.POST;
  * @version 1.0
  * @since 2019/04/23 15:29
  */
-public interface ApiService {
+public interface RetrofitService {
 
     /**
      * 登陆

@@ -28,6 +28,11 @@ public abstract class BaseMvpActivity<V extends MvpView, P extends MvpPresenter<
 
     private Unbinder unbinder;
 
+    /**
+     * createMvpPresenter
+     *
+     * @return
+     */
     @Override
     public abstract P createMvpPresenter();
 
@@ -137,14 +142,14 @@ public abstract class BaseMvpActivity<V extends MvpView, P extends MvpPresenter<
 
 
     /**
-     * 绑定生命周期 防止MVP内存泄漏
+     * 绑定生命周期
+     * 防止MVP内存泄漏（解决 RxJava 内存泄漏问题）
      *
      * @param <T>
      * @return
      */
     @Override
     public <T> AutoDisposeConverter<T> bindAutoDispose() {
-        return AutoDispose.autoDisposable(AndroidLifecycleScopeProvider
-                .from(this, Lifecycle.Event.ON_DESTROY));
+        return AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(this, Lifecycle.Event.ON_DESTROY));
     }
 }

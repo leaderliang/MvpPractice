@@ -1,8 +1,6 @@
 package com.android.mvp.net;
 
-
 import android.support.annotation.NonNull;
-
 
 import com.android.mvp.BuildConfig;
 
@@ -29,11 +27,11 @@ public class RetrofitClient {
 
     private static volatile RetrofitClient instance;
 
-    private String baseUrl = "https://api.github.com";
+    private final String BASE_URL = "https://api.github.com";
 
-    private ApiService apiService;
+    private RetrofitService mRetrofitService;
 
-    private Retrofit retrofit;
+    private Retrofit mRetrofit;
 
     private RetrofitClient() {
     }
@@ -66,7 +64,6 @@ public class RetrofitClient {
                 return chain.proceed(request);
             }
         };
-
     }
 
     /**
@@ -81,18 +78,16 @@ public class RetrofitClient {
         return interceptor;
     }
 
-
-    public ApiService getApi() {
-        if (apiService == null) {
-            // 初始化一个client,不然retrofit会自己默认添加一个
+    public RetrofitService getApi() {
+        if (mRetrofitService == null) {
+            /*初始化一个 client 并进行配置不然 retrofit 会自己默认添加一个*/
             OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
             builder.readTimeout(10, TimeUnit.SECONDS);
             builder.connectTimeout(9, TimeUnit.SECONDS);
-            //设置Header
-            //builder.addInterceptor(getHeaderInterceptor());
             builder.retryOnConnectionFailure(true);
+            /*设置Header  builder.addInterceptor(getHeaderInterceptor());*/
 
-        /*OkHttpClient.Builder builders = new OkHttpClient().newBuilder()
+            /*OkHttpClient.Builder builders = new OkHttpClient().newBuilder()
                 //设置Header
                 .addInterceptor(getHeaderInterceptor())
                 //设置拦截器
@@ -103,22 +98,26 @@ public class RetrofitClient {
                 /*打印日志拦截器*/
                 HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
                 interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-                //设置拦截器
+                /*设置拦截器*/
                 builder.addInterceptor(interceptor);
             }
-            retrofit = new Retrofit.Builder()
+            mRetrofit = new Retrofit.Builder()
                     //设置网络请求的Url地址
-                    .baseUrl(baseUrl)
+                    .baseUrl(BASE_URL)
                     .client(builder.build())
-                    //设置数据解析器
+                    /*设置数据解析器*/
                     .addConverterFactory(GsonConverterFactory.create())
-                    //设置网络请求适配器，使其支持RxJava与RxAndroid
+                    /*设置网络请求适配器，使其支持RxJava与RxAndroid*/
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
-            //创建—— 网络请求接口—— 实例
-            apiService = retrofit.create(ApiService.class);
+            /*创建 —— 网络请求接口 —— 实例*/
+            mRetrofitService = getServer();
         }
-        return apiService;
+        return mRetrofitService;
+    }
+
+    public RetrofitService getServer() {
+        return mRetrofit.create(RetrofitService.class);
     }
 
 
