@@ -1,6 +1,7 @@
 package com.android.mvp.mvp.activity;
 
 import android.arch.lifecycle.Lifecycle;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +12,6 @@ import com.android.mvp.mvp.mvp.MvpView;
 import com.uber.autodispose.AutoDispose;
 import com.uber.autodispose.AutoDisposeConverter;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * TODO BaseMvpActivity
@@ -26,13 +24,6 @@ public abstract class BaseMvpActivity<V extends MvpView, P extends MvpPresenter<
 
     private P mMvpPresenter;
 
-    private Unbinder unbinder;
-
-    /**
-     * createMvpPresenter
-     *
-     * @return
-     */
     @Override
     public abstract P createMvpPresenter();
 
@@ -45,10 +36,12 @@ public abstract class BaseMvpActivity<V extends MvpView, P extends MvpPresenter<
         }
         getMvpPresenter().attachMvpView(getMvpView());
 
-        setContentView(this.getLayoutId());
-        unbinder = ButterKnife.bind(this);
-        initView();
-        setListener();
+
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
     }
 
 
@@ -74,24 +67,6 @@ public abstract class BaseMvpActivity<V extends MvpView, P extends MvpPresenter<
         return (V) this;
     }
 
-    /**
-     * 初始化视图
-     */
-    public abstract void initView();
-
-    /**
-     * add listener to view
-     */
-    protected abstract void setListener();
-
-    /**
-     * 设置布局
-     * <p>
-     * get layout id, call {@link #setContentView(int)} ()}
-     *
-     * @return
-     */
-    protected abstract int getLayoutId();
 
     @Override
     protected void onStart() {
@@ -136,20 +111,19 @@ public abstract class BaseMvpActivity<V extends MvpView, P extends MvpPresenter<
     @Override
     protected void onDestroy() {
         getMvpPresenter().detachMvpView();
-        unbinder.unbind();
         super.onDestroy();
     }
 
 
     /**
-     * 绑定生命周期
-     * 防止MVP内存泄漏（解决 RxJava 内存泄漏问题）
+     * 绑定生命周期 防止MVP内存泄漏
      *
      * @param <T>
      * @return
      */
     @Override
     public <T> AutoDisposeConverter<T> bindAutoDispose() {
-        return AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(this, Lifecycle.Event.ON_DESTROY));
+        return AutoDispose.autoDisposable(AndroidLifecycleScopeProvider
+                .from(this, Lifecycle.Event.ON_DESTROY));
     }
 }

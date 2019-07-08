@@ -1,6 +1,7 @@
 package com.android.mvp.mvp.fragment;
 
 import android.app.Activity;
+import android.arch.lifecycle.Lifecycle;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,10 +12,9 @@ import android.view.ViewGroup;
 import com.android.mvp.mvp.mvp.MvpCallback;
 import com.android.mvp.mvp.mvp.MvpPresenter;
 import com.android.mvp.mvp.mvp.MvpView;
-import com.android.mvp.utils.Trace;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.AutoDisposeConverter;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 /**
  * TODO BaseMvpFragment
@@ -27,16 +27,11 @@ public abstract class BaseMvpFragment<V extends MvpView, P extends MvpPresenter<
 
     private P mMvpPresenter;
 
-    private Unbinder unBinder;
 
-
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Trace.i("BaseMvpFragment", getClass().getSimpleName() + "layoutID" + getLayoutId());
-        View view = inflater.inflate(this.getLayoutId(), container, false);
-        unBinder = ButterKnife.bind(this, view);
-        return view;
+
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
 
@@ -48,15 +43,11 @@ public abstract class BaseMvpFragment<V extends MvpView, P extends MvpPresenter<
             throw new IllegalStateException("BaseMvpFragment, mMvpPresenter is null;");
         }
         getMvpPresenter().attachMvpView(getMvpView());
-
-        initView(view);
-        setListener();
     }
 
     @Override
     public void onDestroyView() {
         getMvpPresenter().detachMvpView();
-        unBinder.unbind();
         super.onDestroyView();
     }
 
@@ -136,31 +127,19 @@ public abstract class BaseMvpFragment<V extends MvpView, P extends MvpPresenter<
         return (V) this;
     }
 
-    /**
-     * init View
-     */
-    protected abstract void initView(View view);
+
+
+
 
     /**
-     * add listener to view
-     */
-    protected abstract void setListener();
-
-    /**
-     * get layout id
+     * 绑定生命周期 防止MVP内存泄漏
      *
+     * @param <T>
      * @return
      */
-    protected abstract int getLayoutId();
-
     @Override
-    public void showMessageToast(int resID) {
-        showMessageToast(getString(resID));
+    public <T> AutoDisposeConverter<T> bindAutoDispose() {
+        return AutoDispose.autoDisposable(AndroidLifecycleScopeProvider
+                .from(this, Lifecycle.Event.ON_DESTROY));
     }
-
-    @Override
-    public void showMessageToast(String message) {
-        ToastUtil.show(getContext(), message);
-    }
-
 }

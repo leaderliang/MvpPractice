@@ -21,17 +21,22 @@ public interface MvpView {
     /**
      * 隐藏加载
      */
-    void hideLoading();
+    void dismissLoading();
 
     /**
      * 数据获取失败
-     * @param throwable
+     *
+     * @param error
      */
-    void onError(Throwable throwable);
+    void onError(String error);
+
+    void onThrowable(Throwable throwable);
 
     void showMessageToast(int resId);
 
-    void showMessageToast(String message);
+    void showMessageToast(CharSequence message);
+
+    void showMessageToast(Object message);
 
     /**
      * 绑定Android生命周期 防止RxJava内存泄漏
