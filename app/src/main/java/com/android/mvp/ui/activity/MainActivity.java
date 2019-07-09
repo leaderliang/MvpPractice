@@ -113,7 +113,7 @@ public class MainActivity extends BaseActivity<UserReposContract.View, UserRepos
 
 
 
-            EasyGlide.loadRoundCornerImage(null, AppConstant.getImageUrl().get(i), 50, ivHorizontalScrollview, R.mipmap.login_bg);
+            EasyGlide.loadRoundCornerImage(this, AppConstant.getImageUrl().get(i), 50, ivHorizontalScrollview, R.mipmap.login_bg);
 
 
 //            RequestOptions myOptions = new RequestOptions()
