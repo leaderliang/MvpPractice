@@ -3,7 +3,6 @@ package com.android.mvp.application;
 import android.app.Application;
 import android.content.Context;
 
-import com.android.imageloader.loader.ImageLoader;
 import com.android.mvp.BuildConfig;
 import com.android.mvp.utils.Trace;
 import com.android.mvp.view.toast.ToastUtils;
@@ -36,7 +35,7 @@ public class ApplicationInit {
         ToastUtils.init(context, new ToastAliPayStyle());
 
         /*初始化一些服务*/
-        ImageLoader.init(context.getApplicationContext());
+//        ImageLoader.init(context.getApplicationContext());
 
 
     }

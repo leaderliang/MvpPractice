@@ -9,9 +9,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.android.imageloader.config.ScaleMode;
-import com.android.imageloader.loader.ImageLoader;
-import com.android.imageloader.transformation.GlideRoundTransform;
+import com.android.imageloader.EasyGlide;
+import com.android.imageloader.progress.MyGlideApp;
 import com.android.mvp.R;
 import com.android.mvp.bean.Repo;
 import com.android.mvp.constant.AppConstant;
@@ -20,9 +19,8 @@ import com.android.mvp.mvp.activity.BaseActivity;
 import com.android.mvp.presenter.UserReposPresenter;
 import com.android.mvp.utils.JsonFormat;
 import com.android.mvp.utils.Trace;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
+
 
 import java.util.List;
 
@@ -65,7 +63,7 @@ public class MainActivity extends BaseActivity<UserReposContract.View, UserRepos
 
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
-        getMvpPresenter().getUserRepo();
+//        getMvpPresenter().getUserRepo();
     }
 
     @Override
@@ -105,28 +103,36 @@ public class MainActivity extends BaseActivity<UserReposContract.View, UserRepos
             FrameLayout mHorizontalItem = (FrameLayout) LayoutInflater.from(this).inflate(R.layout.view_horizontal_scrollview_item, null);
             ImageView ivHorizontalScrollview = mHorizontalItem.findViewById(R.id.iv_horizontal_scrollview);
 
-            ImageLoader.with(this)
+        /*    ImageLoader.with(this)
                     .url(AppConstant.getImageUrl().get(i))
                     .placeHolder(R.mipmap.login_bg)
+                    .error(R.mipmap.login_bg)
                     .rectRoundCorner(50)
-
-                    .into(ivHorizontalScrollview);
-//             .scale(ScaleMode.FIT_CENTER)
-
-
-            /*RequestOptions myOptions = new RequestOptions()
-                    .transform(new GlideRoundTransform(50));
-
-            Glide.with(this).load(AppConstant.getImageUrl().get(i))
-                    .placeholder(R.mipmap.login_bg)
-                    .apply(myOptions)
                     .into(ivHorizontalScrollview);*/
+//                  .scale(ScaleMode.FIT_CENTER)
+
+
+
+            EasyGlide.loadRoundCornerImage(null, AppConstant.getImageUrl().get(i), 50, ivHorizontalScrollview, R.mipmap.login_bg);
+
+
+//            RequestOptions myOptions = new RequestOptions()
+//                    .placeholder(R.mipmap.login_bg)
+//                    .error(R.mipmap.ic_launcher)
+//                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                    .transform(new GlideRoundTransform(50));
+
+//            Glide.with(this)
+//                    .asDrawable()
+//                    .load(AppConstant.getImageUrl().get(i))
+//                    .apply(myOptions)
+//                    .into(ivHorizontalScrollview);
+
+
 
             mHorizontalLayout.addView(mHorizontalItem);
         }
     }
-
-
 
 
 }

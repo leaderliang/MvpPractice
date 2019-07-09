@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.android.imageloader.R;
 import com.android.imageloader.config.AnimationMode;
 import com.android.imageloader.config.GlobalConfig;
 import com.android.imageloader.config.PriorityMode;
@@ -80,19 +81,16 @@ public class GlideLoader implements ILoader {
 
     @Override
     public void request(final SingleConfig config) {
-
         //得到初始的 RequestOptions
         RequestOptions requestOptions = getRequestOptions(config);
 
         //得到一个正确类型的 RequestBuilder(bitmap or 其他加载)
         RequestBuilder requestBuilder = getRequestBuilder(config);
-
         if (requestBuilder == null) {
             return;
         }
         //应用 RequestOptions
         requestBuilder.apply(requestOptions);
-
 
         //设置缩略图
         if (config.getThumbnail() != 0) { //设置缩略比例
@@ -159,6 +157,7 @@ public class GlideLoader implements ILoader {
         //设置图片加载优先级
         setPriority(config, options);
 
+        //设置图片加载失败图片
         if (config.getErrorResId() > 0) {
             options.error(config.getErrorResId());
         }

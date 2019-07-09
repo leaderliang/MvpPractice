@@ -19,6 +19,7 @@ public class AppConstant {
      */
     public static List<String> getImageUrl() {
         List<String> list = new ArrayList<>();
+        list.add("https://timgsa.bai.com/timg?image&quality=80&size=b9999_10000&sec=1556781467378&di=b79b56ea99be0dee0d57693ee3fb3f02&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201303%2F16%2F20130316114138_2CSdZ.jpeg");
         list.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556781467378&di=b79b56ea99be0dee0d57693ee3fb3f02&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201303%2F16%2F20130316114138_2CSdZ.jpeg");
         list.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556783439128&di=8e4053f79122b047229f4087870afd45&imgtype=0&src=http%3A%2F%2Fstatic-xiaoguotu.17house.com%2Fxgt%2Fs%2F21%2F1462885931154aa.jpg");
         list.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556781467378&di=e644c7bc3bcefffd42c4a90f5b06d692&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201605%2F07%2F20160507140223_nYwc3.jpeg");

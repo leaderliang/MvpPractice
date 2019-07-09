@@ -1,0 +1,4 @@
+<resources>
+    <string name="easy_glide_save_succss">保存图片成功</string>
+    <string name="easy_glide_save_failed">保存失败</string>
+</resources>

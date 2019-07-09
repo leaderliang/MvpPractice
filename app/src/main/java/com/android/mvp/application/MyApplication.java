@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.support.multidex.MultiDexApplication;
 
-import com.android.imageloader.loader.ImageLoader;
 import com.android.mvp.utils.Trace;
 
 import io.reactivex.plugins.RxJavaPlugins;
@@ -97,14 +96,14 @@ public class MyApplication extends MultiDexApplication {
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
         /*程序在内存清理的时候执行*/
-        ImageLoader.trimMemory(level);
+//        ImageLoader.trimMemory(level);
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
         /*低内存的时候执行*/
-        ImageLoader.clearAllMemoryCaches();
+//        ImageLoader.clearAllMemoryCaches();
     }
 
    /* private RefWatcher setupLeakCanary(Application context) {
