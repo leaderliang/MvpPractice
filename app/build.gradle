@@ -65,4 +65,5 @@ dependencies {
 
     implementation project(path: ':CoreLib')
     implementation project(path: ':GlideImageView')
+    implementation project(path: ':GlideImageView_')
 }
