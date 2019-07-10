@@ -63,7 +63,7 @@ public class MainActivity extends BaseActivity<UserReposContract.View, UserRepos
 
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
-//        getMvpPresenter().getUserRepo();
+        getMvpPresenter().getUserRepo();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.android.mvp.net;
 
 import android.support.annotation.NonNull;
+import android.support.v4.util.Preconditions;
 
 import com.android.mvp.BuildConfig;
 
@@ -78,7 +79,7 @@ public class RetrofitClient {
         return interceptor;
     }
 
-    public RetrofitService getApi() {
+    public RetrofitService getApiService() {
         if (mRetrofitService == null) {
             /*初始化一个 client 并进行配置不然 retrofit 会自己默认添加一个*/
             OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
@@ -116,7 +117,10 @@ public class RetrofitClient {
         return mRetrofitService;
     }
 
-    public RetrofitService getServer() {
+    private RetrofitService getServer() {
+        if (mRetrofit == null) {
+            throw new NullPointerException("Retrofit is null!!!");
+        }
         return mRetrofit.create(RetrofitService.class);
     }
 

@@ -1,15 +1,11 @@
 package com.android.mvp.contract;
 
 
-import android.media.MediaSync;
-
 import com.android.mvp.bean.Repo;
 import com.android.mvp.mvp.mvp.MvpPresenter;
 import com.android.mvp.mvp.mvp.MvpView;
 
 import java.util.List;
-
-import io.reactivex.Observable;
 
 
 /**
@@ -18,9 +14,6 @@ import io.reactivex.Observable;
  * @author dev.liang
  */
 public interface UserReposContract {
-    interface Model {
-        Observable<List<Repo>> getUserRepo();
-    }
 
     interface View extends MvpView {
         @Override

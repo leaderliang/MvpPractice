@@ -2,15 +2,13 @@ package com.android.mvp.presenter;
 
 import com.android.mvp.bean.Repo;
 import com.android.mvp.contract.UserReposContract;
-import com.android.mvp.model.UserRepoModel;
+import com.android.mvp.mvp.mvp.BaseModel;
 import com.android.mvp.mvp.mvp.BaseMvpPresenter;
+import com.android.mvp.net.RxScheduler;
 
 import java.util.List;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
-import io.reactivex.internal.schedulers.NewThreadScheduler;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * TODO
@@ -20,11 +18,10 @@ import io.reactivex.schedulers.Schedulers;
  * @since 2019/04/23 18:32
  */
 public class UserReposPresenter extends BaseMvpPresenter<UserReposContract.View> implements UserReposContract.Presenter {
-
-    private final UserReposContract.Model model;
+    private final BaseModel mModel;
 
     public UserReposPresenter() {
-        model = new UserRepoModel();
+        mModel = new BaseModel();
     }
 
     @Override
@@ -34,9 +31,8 @@ public class UserReposPresenter extends BaseMvpPresenter<UserReposContract.View>
             return;
         }
         mMvpView.showLoading();
-        model.getUserRepo()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
+        mModel.getUserRepo()
+                .compose(RxScheduler.Obs_io_main())
                 .as(mMvpView.bindAutoDispose())
                 .subscribe(new Consumer<List<Repo>>() {
                     @Override

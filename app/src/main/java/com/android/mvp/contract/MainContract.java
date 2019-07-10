@@ -14,9 +14,6 @@ import io.reactivex.Flowable;
  * @author dev.liang
  */
 public interface MainContract {
-    interface Model {
-        Flowable<BaseObjectBean<LoginBean>> login(String username, String password);
-    }
 
     interface View extends MvpView {
         @Override
