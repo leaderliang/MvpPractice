@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.imageloader.EasyGlide;
-import com.android.imageloader.progress.MyGlideApp;
 import com.android.mvp.R;
 import com.android.mvp.bean.Repo;
 import com.android.mvp.constant.AppConstant;
@@ -113,7 +112,7 @@ public class MainActivity extends BaseActivity<UserReposContract.View, UserRepos
 
 
 
-            EasyGlide.loadRoundCornerImage(this, AppConstant.getImageUrl().get(i), 50, ivHorizontalScrollview, R.mipmap.login_bg);
+            EasyGlide.loadRoundCornerImage(AppConstant.getImageUrl().get(i), 50, ivHorizontalScrollview, R.mipmap.login_bg);
 
 
 //            RequestOptions myOptions = new RequestOptions()
