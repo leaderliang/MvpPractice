@@ -1,14 +1,12 @@
 package com.android.mvp.presenter;
 
-import com.android.mvp.bean.BaseObjectBean;
+import com.android.mvp.bean.BaseResponse;
 import com.android.mvp.bean.LoginBean;
 import com.android.mvp.contract.MainContract;
 import com.android.mvp.mvp.mvp.BaseModel;
 import com.android.mvp.mvp.mvp.BaseMvpPresenter;
+import com.android.mvp.net.BaseFlowable;
 import com.android.mvp.net.RxScheduler;
-
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
 
 
 /**
@@ -38,29 +36,24 @@ public class MainPresenter extends BaseMvpPresenter<MainContract.View> implement
         mMvpView.showLoading();
 //        ArrayCompositeSubscription CompositeSubscription;
         mModel.login(username, password)
-                .compose(RxScheduler.<BaseObjectBean<LoginBean>>Flo_io_main())
-                .as(mMvpView.<BaseObjectBean<LoginBean>>bindAutoDispose())
-                .subscribe(new Subscriber<BaseObjectBean<LoginBean>>() {
+                .compose(RxScheduler.<BaseResponse<LoginBean>>Flo_io_main())
+                .as(mMvpView.<BaseResponse<LoginBean>>bindAutoDispose())
+                .subscribe(new BaseFlowable<LoginBean>() {
                     @Override
-                    public void onSubscribe(Subscription s) {
-                        s.request(Long.MAX_VALUE);  //注意这句代码
-                    }
-
-                    @Override
-                    public void onNext(BaseObjectBean<LoginBean> loginBeanBaseObjectBean) {
-                        mMvpView.onSuccess(loginBeanBaseObjectBean);
+                    protected void onSuccess(BaseResponse<LoginBean> response) {
+                        mMvpView.onSuccess(response);
                         mMvpView.dismissLoading();
                     }
 
                     @Override
-                    public void onError(Throwable t) {
-                        mMvpView.onThrowable(t);
+                    protected void onFailure(BaseResponse<LoginBean> errorResponse) {
                         mMvpView.dismissLoading();
                     }
 
                     @Override
-                    public void onComplete() {
-
+                    protected void onNetError(Throwable throwable) {
+//                        super.onNetError(throwable);
+                        mMvpView.onThrowable(throwable);
                     }
                 });
     }

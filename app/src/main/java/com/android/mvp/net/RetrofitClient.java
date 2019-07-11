@@ -1,9 +1,12 @@
 package com.android.mvp.net;
 
 import android.support.annotation.NonNull;
+import android.support.v4.util.Preconditions;
+import android.util.Log;
 
 import com.android.mvp.BuildConfig;
 import com.android.mvp.net.debug.TestDataInterceptor;
+import com.android.mvp.utils.Trace;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -16,6 +19,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * TODO RetrofitClient
@@ -25,13 +29,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @since 2019/04/23 15:29
  */
 public class RetrofitClient {
-
     private static volatile RetrofitClient instance;
-
+    private final String TAG = this.getClass().getSimpleName();
     private final String BASE_URL = "https://api.github.com";
-
     private RetrofitService mRetrofitService;
-
     private Retrofit mRetrofit;
 
     private RetrofitClient() {
@@ -96,20 +97,38 @@ public class RetrofitClient {
         builder.retryOnConnectionFailure(true);
 
         /*设置Header  builder.addInterceptor(getHeaderInterceptor());*/
-
-            /*OkHttpClient.Builder builders = new OkHttpClient().newBuilder()
-                //设置Header
-                .addInterceptor(getHeaderInterceptor())
-                //设置拦截器
-                .addInterceptor(getInterceptor())
-                .build();*/
+        /*OkHttpClient.Builder builders = new OkHttpClient().newBuilder()
+            //设置Header
+            .addInterceptor(getHeaderInterceptor())
+            //设置拦截器
+            .addInterceptor(getInterceptor())
+            .build();*/
 
         if (BuildConfig.DEBUG) {
-            /*打印日志拦截器*/
+
+            /*打印日志拦截器*//*
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            /*设置拦截器*/
-            builder.addInterceptor(interceptor);
+            *//*设置拦截器*//*
+            builder.addInterceptor(interceptor);*/
+
+            /*自定义 OkHttp 打印日志拦截器*/
+            builder.addInterceptor(new HttpLoggingInterceptor(message -> {
+                int strLength = message.length();
+                int start = 0;
+                int end = 2000;
+                for (int i = 0; i < 100; i++) {
+                    //剩下的文本还是大于规定长度则继续重复截取并输出
+                    if (strLength > end) {
+                        Trace.d(TAG, message.substring(start, end));
+                        start = end;
+                        end = end + 2000;
+                    } else {
+                        Log.d(TAG, message.substring(start, strLength));
+                        break;
+                    }
+                }
+            }).setLevel(HttpLoggingInterceptor.Level.BODY));
         }
         return builder;
     }
@@ -119,16 +138,17 @@ public class RetrofitClient {
                 //设置网络请求的Url地址
                 .baseUrl(BASE_URL)
                 .client(builder.build())
-                /*设置数据解析器*/
+                //设置数据解析器 Gson
                 .addConverterFactory(GsonConverterFactory.create())
-                /*设置网络请求适配器，使其支持RxJava与RxAndroid*/
+                //设置网络请求适配器，使其支持RxJava与RxAndroid
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                //字符串
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
     }
 
-
     /**
-     * 供测试使用，测试数据需要在assets/data.json中自己设置
+     * 供测试使用，测试数据需要在 assets/data.json 中自己设置
      *
      * @return
      */
@@ -141,6 +161,7 @@ public class RetrofitClient {
         mRetrofitService = getServer();
         return mRetrofitService;
     }
+
 
     private RetrofitService getServer() {
         if (mRetrofit == null) {

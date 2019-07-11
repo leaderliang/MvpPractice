@@ -13,6 +13,10 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * TODO RXjava 线程调度
+ * <p>
+ * 将一组操作符重用于多个数据流中 使用 .compose（） 简化线程
+ * Observable.compose()
+ * Flowable.compose()
  *
  * @author dev.liang <a href="mailto:dev.liang@outlook.com">Contact me.</a>
  * @version 1.0

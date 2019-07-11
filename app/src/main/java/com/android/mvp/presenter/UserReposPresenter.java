@@ -1,14 +1,14 @@
 package com.android.mvp.presenter;
 
+import com.android.mvp.bean.BaseResponse;
 import com.android.mvp.bean.Repo;
 import com.android.mvp.contract.UserReposContract;
 import com.android.mvp.mvp.mvp.BaseModel;
 import com.android.mvp.mvp.mvp.BaseMvpPresenter;
+import com.android.mvp.net.BaseObserver;
 import com.android.mvp.net.RxScheduler;
 
 import java.util.List;
-
-import io.reactivex.functions.Consumer;
 
 /**
  * TODO
@@ -34,7 +34,29 @@ public class UserReposPresenter extends BaseMvpPresenter<UserReposContract.View>
         mModel.getUserRepo()
                 .compose(RxScheduler.Obs_io_main())
                 .as(mMvpView.bindAutoDispose())
-                .subscribe(new Consumer<List<Repo>>() {
+                .subscribe(new BaseObserver<List<Repo>>() {
+
+                    @Override
+                    protected void onSuccess(BaseResponse<List<Repo>> response) {
+                        mMvpView.onSuccess(response.getResultData());
+                        mMvpView.dismissLoading();
+                    }
+
+                    @Override
+                    protected void onFailure(BaseResponse<List<Repo>> errorResponse) {
+                        mMvpView.dismissLoading();
+                    }
+
+                    @Override
+                    protected void onNetError(Throwable throwable) {
+//                        super.onNetError(throwable);
+                        mMvpView.onThrowable(throwable);
+                    }
+                });
+
+
+    }
+                /*.subscribe(new Consumer<List<Repo>>() {
                     @Override
                     public void accept(List<Repo> repos) throws Exception {
                         mMvpView.onSuccess(repos);
@@ -46,7 +68,6 @@ public class UserReposPresenter extends BaseMvpPresenter<UserReposContract.View>
                         mMvpView.onThrowable(throwable);
                         mMvpView.dismissLoading();
                     }
-                });
+                });*/
 
-    }
 }

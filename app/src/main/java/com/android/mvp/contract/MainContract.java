@@ -1,12 +1,10 @@
 package com.android.mvp.contract;
 
 
-import com.android.mvp.bean.BaseObjectBean;
+import com.android.mvp.bean.BaseResponse;
 import com.android.mvp.bean.LoginBean;
 import com.android.mvp.mvp.mvp.MvpPresenter;
 import com.android.mvp.mvp.mvp.MvpView;
-
-import io.reactivex.Flowable;
 
 /**
  * 是一个契约，将Model、View、Presenter 进行约束管理，方便后期类的查找、维护
@@ -25,7 +23,7 @@ public interface MainContract {
         @Override
         void onError(String error);
 
-        void onSuccess(BaseObjectBean<LoginBean> bean);
+        void onSuccess(BaseResponse<LoginBean> bean);
     }
 
     interface Presenter extends MvpPresenter<View> {

@@ -1,7 +1,7 @@
 package com.android.mvp.net;
 
 
-import com.android.mvp.bean.BaseObjectBean;
+import com.android.mvp.bean.BaseResponse;
 import com.android.mvp.bean.LoginBean;
 import com.android.mvp.bean.Repo;
 
@@ -33,7 +33,7 @@ public interface RetrofitService {
      */
     @FormUrlEncoded
     @POST("user/login")
-    Flowable<BaseObjectBean<LoginBean>> login(@Field("username") String username,
+    Flowable<BaseResponse<LoginBean>> login(@Field("username") String username,
                                               @Field("password") String password);
 
 
@@ -41,7 +41,10 @@ public interface RetrofitService {
     Call<List<Repo>> getUserRepos_();
 
 
+    /**
+     * @return
+     */
     @GET("/users/leaderliang/repos")
-    Observable<List<Repo>> getUserRepos();
+    Observable<BaseResponse<List<Repo>>> getUserRepos();
 
 }

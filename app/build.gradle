@@ -44,11 +44,13 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.12.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     /*retrofit2*/
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     /*Gson converter*/
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
     /*RxJava2 Adapter*/
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'
+    /*converter-scalars*/
+    implementation 'com.squareup.retrofit2:converter-scalars:2.6.0'
     /*RxJava2 Adapter*/
     /*implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'*/
     /*AutoDispose解决RxJava内存泄漏,版本大于 0.8.0会报错，需要兼容 androidx*/

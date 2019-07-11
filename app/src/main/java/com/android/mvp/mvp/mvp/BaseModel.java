@@ -1,6 +1,6 @@
 package com.android.mvp.mvp.mvp;
 
-import com.android.mvp.bean.BaseObjectBean;
+import com.android.mvp.bean.BaseResponse;
 import com.android.mvp.bean.LoginBean;
 import com.android.mvp.bean.Repo;
 import com.android.mvp.net.RetrofitClient;
@@ -24,12 +24,12 @@ public class BaseModel implements BaseMvpModel {
         this.mRetrofitService = RetrofitClient.getInstance().getApiService();
     }
 
-    public Flowable<BaseObjectBean<LoginBean>> login(String username, String password) {
+    public Flowable<BaseResponse<LoginBean>> login(String username, String password) {
         return mRetrofitService.login(username, password);
     }
 
 
-    public Observable<List<Repo>> getUserRepo() {
+    public Observable<BaseResponse<List<Repo>>> getUserRepo() {
         return RetrofitClient.getInstance().getApiService().getUserRepos();
     }
 

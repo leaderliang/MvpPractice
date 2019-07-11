@@ -12,6 +12,29 @@ import java.util.List;
  */
 public class AppConstant {
 
+    /*用于对响应结果做出类型化描述(如「获取成功」「内容未找到」)*/
+    /**
+     * 1xx:临时性消息。如:100 (继续发送)、101(正在切换协议)
+     */
+    public static final int HTTP_RESPONSE_100 = 100;
+    /**
+     * 2xx:成功。最典型的是 200(OK)、201(创建成功)
+     */
+    public static final int HTTP_RESPONSE_200 = 200;
+    /**
+     * 3xx:重定向。如 301(永久移动)、302(暂时移动)、304(内容未改变)
+     */
+    public static final int HTTP_RESPONSE_301 = 301;
+    /**
+     * 4xx:客户端错误。如 400(客户端请求错误)、401(认证失败)、403(被禁⽌止)、404(找 不不到内容)
+     */
+    public static final int HTTP_RESPONSE_400 = 400;
+    /**
+     * 5xx:服务器器错误。如 500(服务器器内部错误)
+     */
+    public static final int HTTP_RESPONSE_500 = 500;
+
+
     /**
      * 测试图片数据
      *

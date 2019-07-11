@@ -11,7 +11,6 @@ public class BaseMvpPresenter<V extends MvpView> implements MvpPresenter<V> {
 
     protected V mMvpView;
 
-
     /**
      * 绑定view，一般在初始化中调用该方法
      *
