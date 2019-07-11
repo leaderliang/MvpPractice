@@ -1,0 +1,4 @@
+##/user/login##
+{"resultcode":"101","reason":"登录成功测试...","result":null,"error_code":10001}
+##/user/exit##
+{"resultcode":"101","reason":"退出登录测试...","result":null,"error_code":10001}
