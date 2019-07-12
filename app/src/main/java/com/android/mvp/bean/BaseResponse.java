@@ -1,6 +1,7 @@
 package com.android.mvp.bean;
 
-import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.android.mvp.constant.AppConstant;
 import com.android.mvp.net.NetworkError;
@@ -17,13 +18,14 @@ import com.android.mvp.net.ServerException;
  * @author devliang
  * @date 2019-07-11 14:14:06
  */
-public class BaseResponse<T> {
+public class BaseResponse<T> implements Parcelable {
 
     private int statusCode;
 
     private String resultMessage;
 
     private T resultData;
+
 
     public int getStatusCode() {
         return statusCode;
@@ -48,6 +50,34 @@ public class BaseResponse<T> {
     public void setResultData(T resultData) {
         this.resultData = resultData;
     }
+
+    protected BaseResponse(Parcel in) {
+        statusCode = in.readInt();
+        resultMessage = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(statusCode);
+        dest.writeString(resultMessage);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<BaseResponse> CREATOR = new Creator<BaseResponse>() {
+        @Override
+        public BaseResponse createFromParcel(Parcel in) {
+            return new BaseResponse(in);
+        }
+
+        @Override
+        public BaseResponse[] newArray(int size) {
+            return new BaseResponse[size];
+        }
+    };
 
     public boolean resultOk() {
         // 接口成功
