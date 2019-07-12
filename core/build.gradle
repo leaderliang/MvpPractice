@@ -1,5 +1,5 @@
-apply plugin: 'com.android.library'
-//apply plugin: 'com.android.application'
+//apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
@@ -79,7 +79,6 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.56'
 
 
-    implementation project(path: ':CoreLib')
     implementation project(path: ':GlideImageView_')
 
 }

@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.mvp.mvp.mvp.MvpCallback;
-import com.android.mvp.mvp.mvp.MvpPresenter;
-import com.android.mvp.mvp.mvp.MvpView;
+import com.android.core.mvp.mvp.MvpCallback;
+import com.android.core.mvp.mvp.MvpPresenter;
+import com.android.core.mvp.mvp.MvpView;
 import com.uber.autodispose.AutoDispose;
 import com.uber.autodispose.AutoDisposeConverter;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;

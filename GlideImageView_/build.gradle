@@ -32,7 +32,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(path: ':CoreLib')
 
     /* Glide */
     implementation 'com.github.bumptech.glide:glide:4.9.0'

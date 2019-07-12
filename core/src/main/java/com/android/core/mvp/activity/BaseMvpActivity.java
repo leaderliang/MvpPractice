@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.android.mvp.mvp.mvp.MvpCallback;
-import com.android.mvp.mvp.mvp.MvpPresenter;
-import com.android.mvp.mvp.mvp.MvpView;
+import com.android.core.mvp.mvp.MvpCallback;
+import com.android.core.mvp.mvp.MvpPresenter;
+import com.android.core.mvp.mvp.MvpView;
 import com.uber.autodispose.AutoDispose;
 import com.uber.autodispose.AutoDisposeConverter;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;

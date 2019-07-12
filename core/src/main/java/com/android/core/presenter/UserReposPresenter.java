@@ -1,12 +1,12 @@
 package com.android.core.presenter;
 
-import com.android.mvp.bean.BaseResponse;
-import com.android.mvp.bean.Repo;
-import com.android.mvp.contract.UserReposContract;
-import com.android.mvp.mvp.mvp.BaseModel;
-import com.android.mvp.mvp.mvp.BaseMvpPresenter;
-import com.android.mvp.net.BaseObserver;
-import com.android.mvp.net.RxScheduler;
+import com.android.core.bean.BaseResponse;
+import com.android.core.bean.Repo;
+import com.android.core.contract.UserReposContract;
+import com.android.core.mvp.mvp.BaseModel;
+import com.android.core.mvp.mvp.BaseMvpPresenter;
+import com.android.core.net.BaseObserver;
+import com.android.core.net.RxScheduler;
 
 import java.util.List;
 

@@ -1,12 +1,11 @@
 package com.android.core.contract;
 
 
-import com.android.mvp.bean.Repo;
-import com.android.mvp.mvp.mvp.MvpPresenter;
-import com.android.mvp.mvp.mvp.MvpView;
+import com.android.core.bean.Repo;
+import com.android.core.mvp.mvp.MvpPresenter;
+import com.android.core.mvp.mvp.MvpView;
 
 import java.util.List;
-
 
 /**
  * 是一个契约，将Model、View、Presenter 进行约束管理，方便后期类的查找、维护

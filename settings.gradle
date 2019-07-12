@@ -1,1 +1,1 @@
-include ':app', ':GlideImageView_',':CoreLib',':core'
+include ':app', ':GlideImageView_', ':core'

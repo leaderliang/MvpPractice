@@ -65,6 +65,5 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.56'
 
 
-    implementation project(path: ':CoreLib')
     implementation project(path: ':GlideImageView_')
 }

@@ -9,17 +9,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.android.core.R;
+import com.android.core.bean.Repo;
+import com.android.core.constant.AppConstant;
+import com.android.core.contract.UserReposContract;
+import com.android.core.mvp.activity.BaseActivity;
+import com.android.core.presenter.UserReposPresenter;
 import com.android.imageloader.EasyGlide;
-import com.android.mvp.R;
-import com.android.mvp.bean.Repo;
-import com.android.mvp.constant.AppConstant;
-import com.android.mvp.contract.UserReposContract;
-import com.android.mvp.mvp.activity.BaseActivity;
-import com.android.mvp.presenter.UserReposPresenter;
-import com.android.mvp.utils.JsonFormat;
-import com.android.mvp.utils.Trace;
-import com.google.gson.Gson;
-
 
 import java.util.List;
 
@@ -34,7 +30,6 @@ import butterknife.BindView;
  */
 public class MainActivity extends BaseActivity<UserReposContract.View, UserReposContract.Presenter> implements UserReposContract.View {
 
-    private final String TAG = MainActivity.class.getSimpleName();
     @BindView(R.id.horizontal_layout)
     LinearLayout mHorizontalLayout;
 

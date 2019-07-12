@@ -10,16 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.mvp.R;
-import com.android.mvp.mvp.mvp.MvpPresenter;
-import com.android.mvp.mvp.mvp.MvpView;
-import com.android.mvp.utils.NetworkUtil;
-import com.android.mvp.utils.ProgressDialog;
-import com.android.mvp.utils.Trace;
-import com.android.mvp.utils.permission.OnPermission;
-import com.android.mvp.utils.permission.Permission;
-import com.android.mvp.utils.permission.XXPermissions;
-import com.android.mvp.view.toast.ToastUtils;
+
+import com.android.core.R;
+import com.android.core.mvp.mvp.MvpPresenter;
+import com.android.core.mvp.mvp.MvpView;
+import com.android.core.utils.NetworkUtil;
+import com.android.core.utils.ProgressDialog;
+import com.android.core.utils.Trace;
+import com.android.core.utils.permission.OnPermission;
+import com.android.core.utils.permission.Permission;
+import com.android.core.utils.permission.XXPermissions;
+import com.android.core.view.toast.ToastUtils;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.android.core.net;
 
-import com.android.mvp.bean.BaseResponse;
+import com.android.core.bean.BaseResponse;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
