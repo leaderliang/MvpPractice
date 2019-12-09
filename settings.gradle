@@ -1,1 +1,2 @@
-include ':app', ':GlideImageView_', ':core'
+include ':app', ':GlideImageView_'
+//include ':core'

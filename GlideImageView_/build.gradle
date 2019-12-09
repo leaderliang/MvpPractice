@@ -32,7 +32,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(path: ':core')
+//    implementation project(path: ':core')
+
     /* Glide */
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
@@ -41,5 +42,13 @@ dependencies {
     implementation 'jp.wasabeef:glide-transformations:4.0.1'
     /* If you want to use the GPU Filters 图像滤镜框架GPUImage  https://github.com/cats-oss/android-gpuimage*/
     implementation 'jp.co.cyberagent.android:gpuimage:2.0.3'
+
+    /*okHttp3*/
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+
+    /*RxJava*/
+    implementation "io.reactivex.rxjava2:rxjava:2.2.8"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
 }

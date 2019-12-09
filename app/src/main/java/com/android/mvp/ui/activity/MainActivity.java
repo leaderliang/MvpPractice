@@ -90,8 +90,9 @@ public class MainActivity extends BaseActivity<UserReposContract.View, UserRepos
 
     @Override
     public void onSuccess(List<Repo> bean) {
-//        Trace.e(TAG, JsonFormat.format(new Gson().toJson(bean)));
+        Trace.e(TAG, JsonFormat.format(new Gson().toJson(bean)));
 //        Log.e(TAG,"----->"+new Gson().toJson(bean));
+        Trace.v(TAG, bean.toString());
     }
 
 

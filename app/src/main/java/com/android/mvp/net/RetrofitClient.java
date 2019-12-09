@@ -143,7 +143,7 @@ public class RetrofitClient {
                 //设置网络请求适配器，使其支持RxJava与RxAndroid
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 //字符串
-                .addConverterFactory(ScalarsConverterFactory.create())
+//                .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
     }
 
